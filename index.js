@@ -31,7 +31,7 @@ function serve (routes, settings = {}) {
 
   return async (req, res) => {
     const {name, options} = router.lookup(req.url, req.method)
-    if (/json/.test(req.headers['Content-Type'])) {
+    if (/json/.test(req.headers['Content-Type'] || req.headers['content-type'])) {
       req.body = await json(req)
     }
     req.options = options
